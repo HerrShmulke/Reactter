@@ -1,0 +1,32 @@
+.button {
+  padding: 6px 16px;
+  font-size: 15px;
+  line-height: 20px;
+  border: none;
+  font-family: inherit;
+
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.fill {
+  background-color: #5181b8;
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.fill:hover {
+  opacity: 0.88;
+}
+
+.text {
+  background: none;
+  color: #5181b8;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.text:hover {
+  text-decoration: underline;
+}

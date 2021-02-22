@@ -1,0 +1,22 @@
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  display: grid;
+  row-gap: 16px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.actions {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -1,0 +1,20 @@
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: #6f7985;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.input {
+  display: block;
+  padding: 10px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f7f8fa;
+  border: 1px solid #d3d9de;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 20px;
+  font-family: inherit;
+}
