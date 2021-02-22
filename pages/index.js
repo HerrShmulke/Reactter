@@ -4,9 +4,10 @@ import Header from '../components/Header';
 import PostCard from '../components/PostCard';
 import SubmitReactt from '../components/SubmitReactt';
 import { getAllPosts } from '../lib/post';
+import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -15,7 +16,7 @@ export default function Home() {
       </Head>
 
       <Container>
-        <Header />
+        <Header user={user} />
         <SubmitReactt />
         <div className={styles.posts}>
           {getAllPosts(0).map((post) => (
@@ -33,4 +34,14 @@ export default function Home() {
       </Container>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const user = getUser();
+
+  return {
+    props: {
+      user,
+    },
+  };
 }
