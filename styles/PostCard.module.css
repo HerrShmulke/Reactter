@@ -1,0 +1,61 @@
+.card {
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.footer {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 20px;
+}
+
+.avatar {
+  height: 48px;
+  width: 48px;
+}
+
+.avatarBox {
+  border-radius: 100%;
+}
+
+.header {
+  display: inline-grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: 15px;
+}
+
+.content {
+  display: grid;
+  row-gap: 10px;
+}
+
+.header {
+  margin-bottom: 15px;
+}
+
+.author {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.message {
+  color: #2c2d2e;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.footerItem {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  align-items: center;
+  color: #626d7a;
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+.footerItem:hover .selected {
+  fill: #818c99;
+}
