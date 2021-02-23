@@ -40,3 +40,7 @@
 .outline:hover {
   background-color: #f5f5f5;
 }
+
+.button:active {
+  opacity: 0.66;
+}
