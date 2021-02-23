@@ -6,4 +6,5 @@ body {
   margin: 0;
   background-color: #ebedf0;
   font-family: 'Rubik', sans-serif;
+  padding: 0 calc(20px - (100vw - 100%)) 0 0;
 }

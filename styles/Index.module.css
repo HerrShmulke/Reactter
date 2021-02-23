@@ -3,3 +3,46 @@
   row-gap: 25px;
   margin-top: 40px;
 }
+
+.avatar {
+  border-radius: 100%;
+}
+
+.grid {
+  display: inline-grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: 10px;
+  width: 100%;
+}
+
+.name {
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.message {
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  color: #2c2d2e;
+}
+
+.grid + .grid {
+  margin-top: 20px;
+}
+
+.counter {
+  font-size: 12px;
+  line-height: 14px;
+  color: #5c5f60;
+  margin-top: 8px;
+  display: block;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 10px;
+}
