@@ -5,19 +5,9 @@
   margin-top: 40px;
 }
 
-.length {
-  font-size: 12px;
-  line-height: 14px;
-  color: #5c5f60;
-}
-
 .bottom {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 8px;
-}
-
-.red {
-  color: #e64646;
 }

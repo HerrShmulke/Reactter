@@ -32,14 +32,6 @@
   margin-top: 20px;
 }
 
-.counter {
-  font-size: 12px;
-  line-height: 14px;
-  color: #5c5f60;
-  margin-top: 8px;
-  display: block;
-}
-
 .actions {
   display: flex;
   flex-direction: row;

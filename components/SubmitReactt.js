@@ -9,13 +9,14 @@ export default function SubmitReactt() {
 
   return (
     <div className={styles.card}>
-      <Textarea value={postField} setValue={setPostField} placeholder='Что случилось?' maxLength={maxLength} />
-      <div className={styles.bottom}>
-        <span className={`${styles.length} ${postField.length > maxLength - 20 ? styles.red : ''}`}>
-          {postField.length}/{maxLength}
-        </span>
-        <Button>Реактнуть</Button>
-      </div>
+      <Textarea
+        value={postField}
+        setValue={setPostField}
+        placeholder='Что случилось?'
+        maxLength={maxLength}
+        counter
+        CustomFooter={() => <Button>Реактнуть</Button>}
+      />
     </div>
   );
 }
