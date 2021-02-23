@@ -13,3 +13,21 @@
   max-height: 120px;
   resize: none;
 }
+
+.counter {
+  font-size: 12px;
+  line-height: 14px;
+  color: #5c5f60;
+  display: block;
+}
+
+.counter.redCounter {
+  color: #e64646;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8px;
+}
