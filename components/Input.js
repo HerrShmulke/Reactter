@@ -1,16 +1,11 @@
 import styles from '../styles/Input.module.css';
+import { IInputProps } from './Input';
 
 /**
- * @param {Object} param0
- * @param {string} param0.value
- * @param {string} param0.label
- * @param {string} param0.placeholder
- * @param {number} param0.maxLength
- * @param {boolean} param0.password
- * @param {string} param0.name
- * @param {import('react').Dispatch<import('react').SetStateAction<string>>} param0.setValue
+ *
+ * @param {IInputProps} param0
  */
-export default function Input({ value, setValue, label, placeholder, password, maxLength, name }) {
+export default function Input({ value, onChange, label, maxLength, ...props }) {
   const updateValue = (element) => {
     if (maxLength && element.target.value.length > maxLength) return;
     setValue(element.target.value);
@@ -20,14 +15,7 @@ export default function Input({ value, setValue, label, placeholder, password, m
     <div>
       <label>
         <span className={styles.label}>{label}</span>
-        <input
-          placeholder={placeholder}
-          className={styles.input}
-          value={value}
-          onChange={updateValue}
-          type={password ? 'password' : undefined}
-          name={name}
-        />
+        <input className={styles.input} value={value} onChange={updateValue} {...props} />
       </label>
     </div>
   );
