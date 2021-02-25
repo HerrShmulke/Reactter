@@ -1,15 +1,11 @@
 import styles from '../styles/Button.module.css';
 
 /**
- *
- * @param {Object} param0
- * @param {import("react").ReactNode} param0.children
- * @param {'fill' | 'text' | 'outline'} param0.type
- * @param {import("react").MouseEvent<HTMLButtonElement, MouseEvent>} param0.onClick
+ * @param {import('./Button').IButtonProps} param0
  */
-export default function Button({ children, type = 'fill', onClick }) {
+export default function Button({ children, type = 'fill', ...props }) {
   return (
-    <button className={`${styles[type]} ${styles.button}`} onClick={onClick}>
+    <button className={`${styles[type]} ${styles.button}`} {...props}>
       {children}
     </button>
   );
