@@ -1,10 +1,10 @@
-import { Dispatch, FunctionComponent, InputHTMLAttributes, SetStateAction } from 'react';
+import { ChangeEventHandler, Dispatch, FunctionComponent, InputHTMLAttributes, SetStateAction } from 'react';
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   label: string;
   maxLength: number;
-  onChange: Dispatch<SetStateAction<string>>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export default function Input(props: IInputProps): FunctionComponent;

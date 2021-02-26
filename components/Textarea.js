@@ -3,14 +3,17 @@ import { useEffect, useRef } from 'react';
 import styles from '../styles/Textarea.module.css';
 
 /**
- * @param {import('./Textarea').TextareaProps} param0
+ * @param {import('./Textarea').ITextareaProps} param0
  */
-export default function Textarea({ value, setValue, maxLength, counter, CustomFooter, ...props }) {
+export default function Textarea({ value, onChange, maxLength, counter, CustomFooter, ...props }) {
   let textareaRef = useRef(null);
 
-  const updateValue = (element) => {
-    if (maxLength && element.target.value.length > maxLength) return;
-    setValue(element.target.value);
+  /**
+   * @param {import('react').ChangeEvent<HTMLTextAreaElement>} event
+   */
+  const updateValue = (event) => {
+    if (maxLength && event.target.value.length > maxLength) return;
+    onChange(event);
   };
 
   const preventEnter = (event) => {

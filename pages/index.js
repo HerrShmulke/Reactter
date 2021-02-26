@@ -33,7 +33,13 @@ function AddComment({ value, setValue, maxLength }) {
         </div>
 
         <div>
-          <Textarea value={value} setValue={setValue} placeholder='Что думаете?' maxLength={maxLength} counter />
+          <Textarea
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            placeholder='Что думаете?'
+            maxLength={maxLength}
+            counter
+          />
         </div>
       </div>
     </div>

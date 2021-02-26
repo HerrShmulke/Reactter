@@ -20,11 +20,17 @@ export default function Login() {
         <Header />
         <div className={styles.cardContainer}>
           <div className={styles.card}>
-            <Input label='Username' value={username} onChange={setUsername} placeholder='Введите имя' maxLength={5} />
+            <Input
+              label='Username'
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+              placeholder='Введите имя'
+              maxLength={5}
+            />
             <Input
               label='Password'
               value={password}
-              onChange={setPassword}
+              onChange={(event) => setPassword(event.target.value)}
               placeholder='Введите пароль'
               type='password'
             />

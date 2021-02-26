@@ -1,9 +1,11 @@
-import { Dispatch, FunctionComponent, SetStateAction, TextareaHTMLAttributes } from 'react';
+import { ChangeEventHandler, FunctionComponent, TextareaHTMLAttributes } from 'react';
 
-interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  onChange: ChangeEventHandler<HTMLTextAreaElement>;
   maxLength: number;
   counter: boolean;
   CustomFooter: FunctionComponent;
 }
+
+export default function Textarea(props: ITextareaProps): FunctionComponent;

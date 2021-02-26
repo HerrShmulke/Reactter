@@ -8,7 +8,7 @@ import { IInputProps } from './Input';
 export default function Input({ value, onChange, label, maxLength, ...props }) {
   const updateValue = (element) => {
     if (maxLength && element.target.value.length > maxLength) return;
-    setValue(element.target.value);
+    onChange(element);
   };
 
   return (

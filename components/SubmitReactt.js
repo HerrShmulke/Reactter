@@ -11,7 +11,7 @@ export default function SubmitReactt() {
     <div className={styles.card}>
       <Textarea
         value={postField}
-        setValue={setPostField}
+        onChange={(event) => setPostField(event.target.value)}
         placeholder='Что случилось?'
         maxLength={maxLength}
         counter
