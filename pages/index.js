@@ -12,7 +12,7 @@ import { getAllPosts } from '../lib/post';
 import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
 
-function AddComment({ value, setValue, maxLength }) {
+function AddComment({ value, setValue, maxLength, authorName, message }) {
   return (
     <div>
       <div className={styles.grid}>
@@ -20,11 +20,8 @@ function AddComment({ value, setValue, maxLength }) {
           <Image className={styles.avatar} src='/avatar.png' width={48} height={48} />
         </div>
         <div>
-          <span className={styles.name}>Tim Cook</span>
-          <span className={styles.message}>
-            Но укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке прогресса
-            профессионального сообщества.
-          </span>
+          <span className={styles.name}>{authorName}</span>
+          <span className={styles.message}>{message}</span>
         </div>
       </div>
       <div className={styles.grid}>
@@ -60,8 +57,11 @@ function AddCommentActions(setValue) {
 }
 
 export default function Home({ user }) {
+  const posts = getAllPosts(0);
+
   const [activeModal, setActiveModal] = useState(false);
   const [commentMessage, setCommentMessage] = useState('');
+  const [currentPost, setCurrentPost] = useState(() => posts[0]);
 
   return (
     <div className={styles.container}>
@@ -72,7 +72,13 @@ export default function Home({ user }) {
 
       {activeModal ? (
         <Modal setActive={setActiveModal} ActionsComponent={AddCommentActions(setActiveModal)}>
-          <AddComment value={commentMessage} setValue={setCommentMessage} maxLength={250} />
+          <AddComment
+            value={commentMessage}
+            setValue={setCommentMessage}
+            maxLength={250}
+            authorName={currentPost.authorName}
+            message={currentPost.message}
+          />
         </Modal>
       ) : (
         ''
@@ -82,7 +88,7 @@ export default function Home({ user }) {
         <Header user={user} />
         <SubmitReactt />
         <div className={styles.posts}>
-          {getAllPosts(0).map((post) => (
+          {posts.map((post) => (
             <PostCard
               key={post.id}
               avatarUrl={post.avatarUrl}
@@ -91,7 +97,10 @@ export default function Home({ user }) {
               likesCount={post.likesCount}
               message={post.message}
               isLikes={post.isLikes}
-              onCommentClick={() => setActiveModal(true)}
+              onCommentClick={() => {
+                setActiveModal(true);
+                setCurrentPost(post);
+              }}
             />
           ))}
         </div>
