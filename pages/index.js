@@ -81,7 +81,7 @@ export default function Home({ user }) {
       <Container>
         <Header user={user} />
         <SubmitReactt />
-        <div className={styles.posts} onClick={() => setActiveModal(true)}>
+        <div className={styles.posts}>
           {getAllPosts(0).map((post) => (
             <PostCard
               key={post.id}
@@ -91,6 +91,7 @@ export default function Home({ user }) {
               likesCount={post.likesCount}
               message={post.message}
               isLikes={post.isLikes}
+              onCommentClick={() => setActiveModal(true)}
             />
           ))}
         </div>
