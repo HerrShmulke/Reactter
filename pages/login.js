@@ -5,6 +5,20 @@ import Container from '../components/Container';
 import Input from '../components/Input';
 import styles from '../styles/Login.module.css';
 import Button from '../components/Button';
+import { login } from '../lib/api';
+
+/**
+ * @param {import('react').FormEvent<HTMLFormElement>} event
+ */
+function loginOnSubmit(event) {
+  event.preventDefault();
+  const loginFormData = new FormData(event.target);
+
+  const username = loginFormData.get('username');
+  const password = loginFormData.get('password');
+
+  login(username, password);
+}
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -19,13 +33,14 @@ export default function Login() {
       <Container>
         <Header />
         <div className={styles.cardContainer}>
-          <div className={styles.card}>
+          <form className={styles.card} onSubmit={loginOnSubmit}>
             <Input
               label='Username'
               value={username}
               onChange={(event) => setUsername(event.target.value)}
               placeholder='Введите имя'
               maxLength={5}
+              name='username'
             />
             <Input
               label='Password'
@@ -33,12 +48,13 @@ export default function Login() {
               onChange={(event) => setPassword(event.target.value)}
               placeholder='Введите пароль'
               type='password'
+              name='password'
             />
             <div className={styles.actions}>
-              <Button type='text'>Вспомнить пароль</Button>
-              <Button>Войти</Button>
+              <Button appearanceType='text'>Вспомнить пароль</Button>
+              <Button type='submit'>Войти</Button>
             </div>
-          </div>
+          </form>
         </div>
       </Container>
     </>
