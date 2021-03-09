@@ -5,22 +5,18 @@ import Container from '../components/Container';
 import Input from '../components/Input';
 import styles from '../styles/Login.module.css';
 import Button from '../components/Button';
-import { login } from '../lib/api';
+import { gql, useMutation } from '@apollo/client';
+import { useRouter } from 'next/dist/client/router';
 
-/**
- * @param {import('react').FormEvent<HTMLFormElement>} event
- */
-function loginOnSubmit(event) {
-  event.preventDefault();
-  const loginFormData = new FormData(event.target);
-
-  const username = loginFormData.get('username');
-  const password = loginFormData.get('password');
-
-  login(username, password);
-}
+const LOGIN_MUTATION = gql`
+  mutation login($loginInput: UserLoginInput!) {
+    userLogin(input: $loginInput)
+  }
+`;
 
 export default function Login() {
+  const [login] = useMutation(LOGIN_MUTATION);
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,7 +29,22 @@ export default function Login() {
       <Container>
         <Header />
         <div className={styles.cardContainer}>
-          <form className={styles.card} onSubmit={loginOnSubmit}>
+          <form
+            className={styles.card}
+            onSubmit={async (event) => {
+              event.preventDefault();
+              const loginFormData = new FormData(event.target);
+
+              const username = loginFormData.get('username');
+              const password = loginFormData.get('password');
+
+              const authStatusData = await login({ variables: { loginInput: { name: username, password: password } } });
+
+              if (authStatusData.data.userLogin) {
+                router.push('/');
+              }
+            }}
+          >
             <Input
               label='Username'
               value={username}
@@ -51,7 +62,14 @@ export default function Login() {
               name='password'
             />
             <div className={styles.actions}>
-              <Button appearanceType='text'>Вспомнить пароль</Button>
+              <Button
+                appearanceType='text'
+                onClick={(event) => {
+                  event.preventDefault();
+                }}
+              >
+                Вспомнить пароль
+              </Button>
               <Button type='submit'>Войти</Button>
             </div>
           </form>

@@ -6,7 +6,7 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/api/graphql',
+        source: '/graphql',
         destination: 'http://127.0.0.1:3000/graphql',
       },
     ];
