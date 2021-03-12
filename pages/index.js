@@ -1,3 +1,4 @@
+import { gql, useQuery } from '@apollo/client';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -11,6 +12,22 @@ import Textarea from '../components/Textarea';
 import { getAllPosts } from '../lib/post';
 import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
+
+const GET_POSTS = gql`
+  query GetPosts($take: Int!, $skip: Int!) {
+    posts(take: $take, skip: $skip) {
+      id
+      message
+      owner {
+        name
+        avatarUrl
+      }
+      likesCount
+      commentsCount
+      isLikes
+    }
+  }
+`;
 
 function AddComment({ value, setValue, maxLength, authorName, message }) {
   return (
@@ -57,11 +74,10 @@ function AddCommentActions(setValue) {
 }
 
 export default function Home({ user }) {
-  const posts = getAllPosts(0);
-
+  const { loading, data: posts } = useQuery(GET_POSTS, { variables: { skip: 0, take: 2 } });
   const [activeModal, setActiveModal] = useState(false);
   const [commentMessage, setCommentMessage] = useState('');
-  const [currentPost, setCurrentPost] = useState(() => posts[0]);
+  const [currentPost, setCurrentPost] = useState(null);
 
   return (
     <div className={styles.container}>
@@ -70,7 +86,7 @@ export default function Home({ user }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      {activeModal ? (
+      {activeModal && (
         <Modal setActive={setActiveModal} ActionsComponent={AddCommentActions(setActiveModal)}>
           <AddComment
             value={commentMessage}
@@ -80,29 +96,28 @@ export default function Home({ user }) {
             message={currentPost.message}
           />
         </Modal>
-      ) : (
-        ''
       )}
 
       <Container>
         <Header user={user} />
         <SubmitReactt />
         <div className={styles.posts}>
-          {posts.map((post) => (
-            <PostCard
-              key={post.id}
-              avatarUrl={post.avatarUrl}
-              authorName={post.authorName}
-              commentsCount={post.commentsCount}
-              likesCount={post.likesCount}
-              message={post.message}
-              isLikes={post.isLikes}
-              onCommentClick={() => {
-                setActiveModal(true);
-                setCurrentPost(post);
-              }}
-            />
-          ))}
+          {!loading &&
+            posts.posts.map((post) => (
+              <PostCard
+                key={post.id}
+                avatarUrl={post.owner.avatarUrl}
+                authorName={post.owner.name}
+                commentsCount={post.commentsCount}
+                likesCount={post.likesCount}
+                message={post.message}
+                isLikes={post.isLikes}
+                onCommentClick={() => {
+                  setActiveModal(true);
+                  setCurrentPost(post);
+                }}
+              />
+            ))}
         </div>
       </Container>
     </div>
