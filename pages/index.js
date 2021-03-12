@@ -99,14 +99,12 @@ export default function Home({ user }) {
   useEffect(() => {
     if (!postsLoading) {
       setPostPool((oldArr) => [...posts.posts]);
-      console.log('new render');
     }
   }, [posts]);
 
   useEffect(() => {
     if (!subPostLoading) {
       setPostPool((oldArr) => [subPost.postAdded, ...oldArr]);
-      console.log('old render');
     }
   }, [subPost]);
 
