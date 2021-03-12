@@ -5,7 +5,7 @@ import styles from '../styles/Textarea.module.css';
 /**
  * @param {import('./Textarea').ITextareaProps} param0
  */
-function Textarea({ value, onChange, maxLength, counter, CustomFooter, ...props }, ref) {
+function Textarea({ value, onChange, maxLength, counter, CustomFooter, onKeyDown, ...props }, ref) {
   let textareaRef = useRef(null);
 
   /**
@@ -21,13 +21,13 @@ function Textarea({ value, onChange, maxLength, counter, CustomFooter, ...props 
       event.preventDefault();
     }
 
-    props.onKeyDown(event);
+    if (onKeyDown) onKeyDown(event);
   };
 
   useEffect(() => {
     autosize(textareaRef.current);
-    ref.current = textareaRef.current;
-  }, [textareaRef]);
+    if (ref) ref.current = textareaRef.current;
+  });
 
   return (
     <div>
