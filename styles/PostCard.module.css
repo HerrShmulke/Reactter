@@ -20,18 +20,15 @@
 }
 
 .header {
-  display: inline-grid;
+  display: grid;
   grid-template-columns: 48px 1fr;
   column-gap: 15px;
+  margin-bottom: 15px;
 }
 
 .content {
   display: grid;
   row-gap: 10px;
-}
-
-.header {
-  margin-bottom: 15px;
 }
 
 .author {
