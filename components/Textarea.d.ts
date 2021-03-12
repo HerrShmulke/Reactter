@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FunctionComponent, TextareaHTMLAttributes } from 'react';
+import { ChangeEventHandler, FunctionComponent, LegacyRef, TextareaHTMLAttributes } from 'react';
 
 export interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   value?: string;
@@ -8,4 +8,4 @@ export interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaEleme
   CustomFooter?: FunctionComponent;
 }
 
-export default function Textarea(props: ITextareaProps): FunctionComponent;
+export default function Textarea(props: ITextareaProps, ref: LegacyRef<HTMLTextAreaElement>): FunctionComponent;

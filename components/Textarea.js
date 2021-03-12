@@ -1,11 +1,11 @@
 import autosize from 'autosize';
-import { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import styles from '../styles/Textarea.module.css';
 
 /**
  * @param {import('./Textarea').ITextareaProps} param0
  */
-export default function Textarea({ value, onChange, maxLength, counter, CustomFooter, ...props }) {
+function Textarea({ value, onChange, maxLength, counter, CustomFooter, ...props }, ref) {
   let textareaRef = useRef(null);
 
   /**
@@ -17,14 +17,17 @@ export default function Textarea({ value, onChange, maxLength, counter, CustomFo
   };
 
   const preventEnter = (event) => {
-    if (event.which === 13) {
+    if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
     }
+
+    props.onKeyDown(event);
   };
 
   useEffect(() => {
     autosize(textareaRef.current);
-  });
+    ref.current = textareaRef.current;
+  }, [textareaRef]);
 
   return (
     <div>
@@ -57,3 +60,5 @@ export default function Textarea({ value, onChange, maxLength, counter, CustomFo
     </div>
   );
 }
+
+export default forwardRef(Textarea);
