@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Home from '../containers/Home';
+import HomeContainer from '../containers/Home';
 import { useGetPosts, useSubscribeToAddNewPosts } from '../lib/api';
 
 export default function Index() {
@@ -19,5 +19,5 @@ export default function Index() {
     }
   }, [newPost.data]);
 
-  return <Home posts={postPool} postsLoading={posts.loading} />;
+  return <HomeContainer posts={postPool} postsLoading={posts.loading} />;
 }

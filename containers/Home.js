@@ -10,7 +10,7 @@ import AddCommentActions from '../components/Index/AddCommentActions';
 import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
 
-export default function Home({ user, posts, postsLoading }) {
+export default function HomeContainer({ user, posts, postsLoading }) {
   const [activeModal, setActiveModal] = useState(false);
   const [commentMessage, setCommentMessage] = useState('');
   const [currentPost, setCurrentPost] = useState(null);
