@@ -20,5 +20,5 @@ export default function Index() {
     }
   }, [newPost.data]);
 
-  return <HomeContainer posts={postPool} postsLoading={posts.loading} onSubmitPost={addPost(message, mention)} />;
+  return <HomeContainer posts={postPool} postsLoading={posts.loading} onSubmitPost={addPost} />;
 }

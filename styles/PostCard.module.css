@@ -56,3 +56,10 @@
 .footerItem:hover .selected {
   fill: #818c99;
 }
+
+.relation {
+  color: #5181b8;
+  font-weight: bold;
+  margin-right: 5px;
+  cursor: pointer;
+}

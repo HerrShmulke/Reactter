@@ -12,8 +12,11 @@ export interface IPost {
   likesCount: number;
   commentsCount: number;
   isLikes: boolean;
-  mention: {
+  mention?: {
     id: number;
+    owner: {
+      name: string;
+    };
   };
 }
 

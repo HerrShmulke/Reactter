@@ -11,6 +11,7 @@ export default function SubmitReactt({ onSubmit }) {
   async function createPostHandler() {
     setPostField('');
     textarea.current.focus();
+    onSubmit(postField);
   }
 
   return (
@@ -23,9 +24,9 @@ export default function SubmitReactt({ onSubmit }) {
         counter
         ref={textarea}
         onKeyDown={(event) => {
-          if (event.key.toLowerCase() === 'enter') onSubmit(postField);
+          if (event.key.toLowerCase() === 'enter') createPostHandler();
         }}
-        CustomFooter={() => <Button onClick={() => onSubmit(postField)}>Реактнуть</Button>}
+        CustomFooter={() => <Button onClick={createPostHandler}>Реактнуть</Button>}
       />
     </div>
   );

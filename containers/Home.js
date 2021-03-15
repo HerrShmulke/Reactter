@@ -24,6 +24,12 @@ export default function HomeContainer({ user, posts, postsLoading, onSubmitPost 
    */
   const [currentPost, setCurrentPost] = useState(null);
 
+  function postSubmit() {
+    onSubmitPost(commentMessage, currentPost.id);
+    setCommentMessage('');
+    setActiveModal(false);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -41,19 +47,12 @@ export default function HomeContainer({ user, posts, postsLoading, onSubmitPost 
             message={currentPost.message}
             onKeyDown={(event) => {
               if (event.key.toLowerCase() === 'enter') {
-                onSubmitPost(commentMessage, currentPost.id);
-                setCommentMessage('');
+                postSubmit();
               }
             }}
           />
           <ModalFooter>
-            <AddCommentActions
-              onCancel={() => setActiveModal(false)}
-              onSubmit={() => {
-                onSubmitPost(commentMessage, currentPost.id);
-                setCommentMessage('');
-              }}
-            />
+            <AddCommentActions onCancel={() => setActiveModal(false)} onSubmit={postSubmit} />
           </ModalFooter>
         </Modal>
       )}
@@ -72,6 +71,7 @@ export default function HomeContainer({ user, posts, postsLoading, onSubmitPost 
                 likesCount={post.likesCount}
                 message={post.message}
                 isLikes={post.isLikes}
+                mentionName={post.mention ? post.mention.owner.name : undefined}
                 onCommentClick={() => {
                   setActiveModal(true);
                   setCurrentPost(post);

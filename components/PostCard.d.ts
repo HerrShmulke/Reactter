@@ -7,6 +7,7 @@ export interface IPostCardProps {
   commentsCount?: number;
   likesCount?: number;
   isLikes?: boolean;
+  mentionName?: string;
   onLikeClick?: (event: MouseEventHandler<HTMLDivElement> | KeyboardEventHandler<HTMLDivElement>) => void;
   onCommentClick?: (event: MouseEventHandler<HTMLDivElement> | KeyboardEventHandler<HTMLDivElement>) => void;
   onShareClick?: (event: MouseEventHandler<HTMLDivElement> | KeyboardEventHandler<HTMLDivElement>) => void;

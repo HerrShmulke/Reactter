@@ -11,6 +11,7 @@ export default function PostCard({
   authorName,
   message,
   isLikes,
+  mentionName,
   onLikeClick,
   onCommentClick,
   onShareClick,
@@ -30,7 +31,10 @@ export default function PostCard({
 
         <div className={styles.content}>
           <span className={styles.author}>{authorName}</span>
-          <span className={styles.message}>{message}</span>
+          <span className={styles.message}>
+            <span className={styles.relation}>{mentionName && `@${mentionName}`}</span>
+            {message}
+          </span>
         </div>
       </div>
 
