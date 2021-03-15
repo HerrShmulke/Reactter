@@ -1,16 +1,14 @@
 import Button from '../Button';
 import styles from '../../styles/Index.module.css';
 
-export default function AddCommentActions(setValue) {
-  return function () {
-    return (
-      <div className={styles.actions}>
-        <Button type='outline' onClick={() => setValue(false)}>
-          Отменить
-        </Button>
+export default function AddCommentActions({ onCancel, onSubmit }) {
+  return (
+    <div className={styles.actions}>
+      <Button type='outline' onClick={onCancel}>
+        Отменить
+      </Button>
 
-        <Button>Отправить</Button>
-      </div>
-    );
-  };
+      <Button onClick={onSubmit}>Отправить</Button>
+    </div>
+  );
 }

@@ -13,7 +13,7 @@ function Textarea({ value, onChange, maxLength, counter, CustomFooter, onKeyDown
    */
   const updateValue = (event) => {
     if (maxLength && event.target.value.length > maxLength) return;
-    onChange(event);
+    onChange && onChange(event);
   };
 
   const preventEnter = (event) => {

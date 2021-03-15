@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import HomeContainer from '../containers/Home';
-import { useGetPosts, useSubscribeToAddNewPosts } from '../lib/api';
+import { useGetPosts, useSubscribeToAddNewPosts, useAddPost } from '../lib/api';
 
 export default function Index() {
   const posts = useGetPosts(20);
   const newPost = useSubscribeToAddNewPosts();
   const [postPool, setPostPool] = useState([]);
+  const addPost = useAddPost();
 
   useEffect(() => {
     if (!posts.loading) {
@@ -19,5 +20,5 @@ export default function Index() {
     }
   }, [newPost.data]);
 
-  return <HomeContainer posts={postPool} postsLoading={posts.loading} />;
+  return <HomeContainer posts={postPool} postsLoading={posts.loading} onSubmitPost={addPost(message, mention)} />;
 }

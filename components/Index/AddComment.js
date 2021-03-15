@@ -2,7 +2,10 @@ import Image from 'next/image';
 import Textarea from '../Textarea';
 import styles from '../../styles/Index.module.css';
 
-export default function AddComment({ value, setValue, maxLength, authorName, message }) {
+/**
+ * @param {import('./AddComment').IAddCommentProps} param0
+ */
+export default function AddComment({ maxLength, authorName, message, ...props }) {
   return (
     <div>
       <div className={styles.grid}>
@@ -20,13 +23,7 @@ export default function AddComment({ value, setValue, maxLength, authorName, mes
         </div>
 
         <div>
-          <Textarea
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            placeholder='Что думаете?'
-            maxLength={maxLength}
-            counter
-          />
+          <Textarea {...props} placeholder='Что думаете?' maxLength={maxLength} counter />
         </div>
       </div>
     </div>

@@ -1,18 +1,27 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 import PostCard from '../components/PostCard';
 import SubmitReactt from '../components/SubmitReactt';
 import AddComment from '../components/Index/AddComment';
 import AddCommentActions from '../components/Index/AddCommentActions';
 import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
+import ModalFooter from '../components/Modal/ModalFooter';
+import { IPost } from '../lib/post-api';
 
-export default function HomeContainer({ user, posts, postsLoading }) {
+/**
+ * @param {import('./Home').IHomeContainerProps} param0
+ */
+export default function HomeContainer({ user, posts, postsLoading, onSubmitPost }) {
   const [activeModal, setActiveModal] = useState(false);
   const [commentMessage, setCommentMessage] = useState('');
+
+  /**
+   * @type {[IPost, import('react').Dispatch<IPost>]}
+   */
   const [currentPost, setCurrentPost] = useState(null);
 
   return (
@@ -23,20 +32,35 @@ export default function HomeContainer({ user, posts, postsLoading }) {
       </Head>
 
       {activeModal && (
-        <Modal setActive={setActiveModal} ActionsComponent={AddCommentActions(setActiveModal)}>
+        <Modal setActive={setActiveModal}>
           <AddComment
             value={commentMessage}
-            setValue={setCommentMessage}
+            onChange={(event) => setCommentMessage(event.target.value)}
             maxLength={250}
             authorName={currentPost.authorName}
             message={currentPost.message}
+            onKeyDown={(event) => {
+              if (event.key.toLowerCase() === 'enter') {
+                onSubmitPost(commentMessage, currentPost.id);
+                setCommentMessage('');
+              }
+            }}
           />
+          <ModalFooter>
+            <AddCommentActions
+              onCancel={() => setActiveModal(false)}
+              onSubmit={() => {
+                onSubmitPost(commentMessage, currentPost.id);
+                setCommentMessage('');
+              }}
+            />
+          </ModalFooter>
         </Modal>
       )}
 
       <Container>
         <Header user={user} />
-        <SubmitReactt />
+        <SubmitReactt onSubmit={onSubmitPost} />
         <div className={styles.posts}>
           {!postsLoading &&
             posts.map((post) => (

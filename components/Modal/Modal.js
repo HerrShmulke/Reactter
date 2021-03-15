@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
-import styles from '../styles/Modal.module.css';
+import styles from '../../styles/Modal.module.css';
 import FocusLock from 'react-focus-lock';
 
-export default function Modal({ children, ActionsComponent, setActive }) {
+export default function Modal({ children, renderActions: Actions, setActive }) {
   /**
    * @type {import('react').MutableRefObject<HTMLDivElement>}
    */
@@ -40,8 +40,7 @@ export default function Modal({ children, ActionsComponent, setActive }) {
               tabIndex='0'
             />
           </div>
-          <div>{children}</div>
-          <div className={styles.actions}>{ActionsComponent ? <ActionsComponent /> : ''}</div>
+          {children}
         </div>
       </div>
     </FocusLock>
