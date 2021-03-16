@@ -15,7 +15,7 @@ import { IPost } from '../lib/post-api';
 /**
  * @param {import('./Home').IHomeContainerProps} param0
  */
-export default function HomeContainer({ user, posts, postsLoading, onSubmitPost }) {
+export default function HomeContainer({ user, posts, onSubmitPost, onLikePost }) {
   const [activeModal, setActiveModal] = useState(false);
   const [commentMessage, setCommentMessage] = useState('');
 
@@ -76,6 +76,7 @@ export default function HomeContainer({ user, posts, postsLoading, onSubmitPost 
                   setActiveModal(true);
                   setCurrentPost(post);
                 }}
+                onLikeClick={() => onLikePost(post.id)}
               />
             ))}
         </div>
