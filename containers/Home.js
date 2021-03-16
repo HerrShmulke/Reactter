@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Modal from '../components/Modal/Modal';
 import PostCard from '../components/PostCard';
 import MainSubmitForm from '../forms/MainSubmitForm';
-import AddComment from '../components/Index/AddComment';
+import AddCommentForm from '../forms/AddCommentForm';
 import AddCommentActions from '../components/Index/AddCommentActions';
 import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
@@ -39,7 +39,7 @@ export default function HomeContainer({ user, posts, onSubmitPost, onLikePost })
 
       {activeModal && (
         <Modal setActive={setActiveModal}>
-          <AddComment
+          <AddCommentForm
             value={commentMessage}
             onChange={(event) => setCommentMessage(event.target.value)}
             maxLength={250}

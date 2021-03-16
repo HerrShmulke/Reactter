@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import Textarea from '../Textarea';
-import styles from '../../styles/Index.module.css';
+import Textarea from '../components/Textarea';
+import styles from '../styles/Index.module.css';
 
 /**
- * @param {import('./AddComment').IAddCommentProps} param0
+ * @param {import('./AddCommentForm').IAddCommentFormProps} param0
  */
-export default function AddComment({ maxLength, authorName, message, ...props }) {
+export default function AddCommentForm({ maxLength, authorName, message, ...props }) {
   return (
     <div>
       <div className={styles.grid}>
