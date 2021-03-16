@@ -32,7 +32,7 @@ export default function PostCard({
         <div className={styles.content}>
           <span className={styles.author}>{authorName}</span>
           <span className={styles.message}>
-            <span className={styles.relation}>{mentionName && `@${mentionName}`}</span>
+            {mentionName && <span className={styles.relation}>{`@${mentionName}`}</span>}
             {message}
           </span>
         </div>

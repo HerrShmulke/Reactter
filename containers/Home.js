@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import InfiniteScroll from 'react-infinite-scroller';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
 import Modal from '../components/Modal/Modal';
