@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import InfiniteScroll from 'react-infinite-scroller';
 import { useEffect, useRef, useState } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
@@ -61,7 +62,7 @@ export default function HomeContainer({ user, posts, postsLoading, onSubmitPost 
         <Header user={user} />
         <MainSubmitForm onSubmit={onSubmitPost} />
         <div className={styles.posts}>
-          {!postsLoading &&
+          {posts.length > 0 &&
             posts.map((post) => (
               <PostCard
                 key={post.id}
