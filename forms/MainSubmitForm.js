@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import Textarea from './Textarea';
-import styles from '../styles/SubmitReactt.module.css';
-import Button from './Button';
+import Textarea from '../components/Textarea';
+import styles from '../styles/MainSubmitForm.module.css';
+import Button from '../components/Button';
 
-export default function SubmitReactt({ onSubmit }) {
+export default function MainSubmitForm({ onSubmit }) {
   const [postField, setPostField] = useState('');
   const textarea = useRef(null);
   const maxLength = 250;

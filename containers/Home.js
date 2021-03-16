@@ -4,7 +4,7 @@ import Container from '../components/Container';
 import Header from '../components/Header';
 import Modal from '../components/Modal/Modal';
 import PostCard from '../components/PostCard';
-import SubmitReactt from '../components/SubmitReactt';
+import MainSubmitForm from '../forms/MainSubmitForm';
 import AddComment from '../components/Index/AddComment';
 import AddCommentActions from '../components/Index/AddCommentActions';
 import { getUser } from '../lib/user';
@@ -59,7 +59,7 @@ export default function HomeContainer({ user, posts, postsLoading, onSubmitPost 
 
       <Container>
         <Header user={user} />
-        <SubmitReactt onSubmit={onSubmitPost} />
+        <MainSubmitForm onSubmit={onSubmitPost} />
         <div className={styles.posts}>
           {!postsLoading &&
             posts.map((post) => (
