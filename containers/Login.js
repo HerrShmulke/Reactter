@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Container from '../components/Container';
 import styles from '../styles/Login.module.css';
@@ -6,8 +7,8 @@ import LoginForm from '../forms/LoginForm';
 
 export default function LoginContainer({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
-  
-  let currentForm = <LoginForm onSubmit={onLogin} onFormReplace={setIsLogin(false)} />
+
+  let currentForm = <LoginForm onSubmit={onLogin} onFormReplace={() => setIsLogin(false)} />;
 
   return (
     <>
@@ -17,9 +18,7 @@ export default function LoginContainer({ onLogin }) {
       </Head>
       <Container>
         <Header />
-        <div className={styles.cardContainer}>
-          
-        </div>
+        <div className={styles.cardContainer}>{currentForm}</div>
       </Container>
     </>
   );

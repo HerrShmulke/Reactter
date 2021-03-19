@@ -1,22 +1,29 @@
 import { useRef, useState } from 'react';
 import styles from '../styles/Login.module.css';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
 /**
  * @param {import("./LoginForm").ILoginFormProps} param0
  * @returns
  */
 export default function LoginForm({ onSubmit, onFormReplace }) {
+  /**
+   * @type {import('react').MutableRefObject<HTMLFormElement>}
+   */
   const formRef = useRef(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  function submitForm() {
+  function handleSubmit() {
     const loginFormData = new FormData(formRef.current);
 
     const username = loginFormData.get('username');
     const password = loginFormData.get('password');
 
-    onSubmit(username, password);
+    formRef.current.reportValidity();
+
+    if (formRef.current.checkValidity()) onSubmit(username, password);
   }
 
   return (
@@ -25,7 +32,7 @@ export default function LoginForm({ onSubmit, onFormReplace }) {
       ref={formRef}
       onSubmit={(event) => {
         event.preventDefault();
-        submitForm();
+        handleSubmit();
       }}
     >
       <Input
@@ -33,11 +40,16 @@ export default function LoginForm({ onSubmit, onFormReplace }) {
         value={username}
         onChange={(event) => setUsername(event.target.value)}
         placeholder='Введите имя'
-        maxLength={5}
+        maxLength={30}
         name='username'
         onKeyPress={(event) => {
-          if (event.key.toLowerCase() === 'enter') submitForm();
+          if (event.key.toLowerCase() === 'enter') {
+            event.target.value = event.target.value.trim();
+            handleSubmit();
+          }
         }}
+        pattern='\w*\d*'
+        required
       />
       <Input
         label='Password'
@@ -47,8 +59,9 @@ export default function LoginForm({ onSubmit, onFormReplace }) {
         type='password'
         name='password'
         onKeyPress={(event) => {
-          if (event.key.toLowerCase() === 'enter') submitForm();
+          if (event.key.toLowerCase() === 'enter') handleSubmit();
         }}
+        required
       />
       <div className={styles.actions}>
         <Button
