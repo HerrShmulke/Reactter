@@ -13,7 +13,7 @@ import ModalFooter from '../components/Modal/ModalFooter';
 import { IPost } from '../lib/post-api';
 
 /**
- * @param {import('./Home').IHomeContainerProps} param0
+ * @param {import('./HomeContainer').IHomeContainerProps} param0
  */
 export default function HomeContainer({ user, posts, onSubmitPost, onLikePost }) {
   const [activeModal, setActiveModal] = useState(false);

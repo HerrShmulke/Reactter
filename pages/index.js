@@ -1,5 +1,5 @@
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
-import HomeContainer from '../containers/Home';
+import HomeContainer from '../containers/HomeContainer';
 import { useGetPosts, useSubscribeToAddNewPosts, useAddPost, useToggleLikePost } from '../lib/api';
 import throttle from '../lib/throttle';
 import { IPost } from '../lib/post-api';

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/dist/client/router';
 import { useEffect } from 'react';
-import LoginContainer from '../containers/Login';
+import LoginContainer from '../containers/LoginContainer';
 import { useLogin } from '../lib/api';
 
 export default function Login() {
