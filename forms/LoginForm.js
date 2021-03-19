@@ -66,6 +66,7 @@ export default function LoginForm({ onSubmit, onFormReplace }) {
       <div className={styles.actions}>
         <Button
           appearanceType='text'
+          type='button'
           onClick={(event) => {
             event.preventDefault();
             onFormReplace();
@@ -73,7 +74,7 @@ export default function LoginForm({ onSubmit, onFormReplace }) {
         >
           Нет аккаунта?
         </Button>
-        <Button type='submit'>Войти</Button>
+        <Button>Войти</Button>
       </div>
     </form>
   );
