@@ -4,11 +4,16 @@ import Header from '../components/Header';
 import Container from '../components/Container';
 import styles from '../styles/Login.module.css';
 import LoginForm from '../forms/LoginForm';
+import RegisterForm from '../forms/RegisterForm';
 
-export default function LoginContainer({ onLogin }) {
+/**
+ * @param {import('./LoginContainer').ILoginContainerProps} param0
+ */
+export default function LoginContainer({ onLogin, onRegister }) {
   const [isLogin, setIsLogin] = useState(true);
 
   let currentForm = <LoginForm onSubmit={onLogin} onFormReplace={() => setIsLogin(false)} />;
+  if (!isLogin) currentForm = <RegisterForm onSubmit={onRegister} onFormReplace={() => setIsLogin(true)} />;
 
   return (
     <>
