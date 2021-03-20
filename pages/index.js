@@ -33,7 +33,7 @@ export default function Index() {
   }, [posts.data]);
 
   useEffect(() => {
-    if (!newPost.loading) {
+    if (!newPost.loading && newPost.data) {
       setPostPool((oldArr) => [newPost.data, ...oldArr]);
     }
   }, [newPost.data]);
