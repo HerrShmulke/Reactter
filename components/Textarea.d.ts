@@ -5,7 +5,7 @@ export interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaEleme
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
   maxLength?: number;
   counter?: boolean;
-  CustomFooter?: FunctionComponent;
+  footer?: FunctionComponent;
 }
 
 export default function Textarea(props: ITextareaProps, ref: LegacyRef<HTMLTextAreaElement>): FunctionComponent;

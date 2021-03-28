@@ -5,7 +5,7 @@ import styles from '../styles/Textarea.module.css';
 /**
  * @param {import('./Textarea').ITextareaProps} param0
  */
-function Textarea({ value, onChange, maxLength, counter, CustomFooter, onKeyDown, ...props }, ref) {
+function Textarea({ value, onChange, maxLength, counter, footer, onKeyDown, ...props }, ref) {
   let textareaRef = useRef(null);
 
   /**
@@ -49,9 +49,9 @@ function Textarea({ value, onChange, maxLength, counter, CustomFooter, onKeyDown
           ''
         )}
 
-        {CustomFooter ? (
+        {footer ? (
           <div className={styles.customFooter}>
-            <CustomFooter />
+            <footer />
           </div>
         ) : (
           ''

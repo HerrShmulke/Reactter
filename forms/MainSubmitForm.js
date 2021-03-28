@@ -26,7 +26,7 @@ export default function MainSubmitForm({ onSubmit }) {
         onKeyDown={(event) => {
           if (event.key.toLowerCase() === 'enter') createPostHandler();
         }}
-        CustomFooter={() => <Button onClick={createPostHandler}>Реактнуть</Button>}
+        footer={() => <Button onClick={createPostHandler}>Реактнуть</Button>}
       />
     </div>
   );
