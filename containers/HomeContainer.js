@@ -2,14 +2,13 @@ import Head from 'next/head';
 import { useState } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/Modal';
 import PostCard from '../components/PostCard';
 import MainSubmitForm from '../forms/MainSubmitForm';
 import AddCommentForm from '../forms/AddCommentForm';
 import AddCommentActions from '../components/Index/AddCommentActions';
 import { getUser } from '../lib/user';
 import styles from '../styles/Index.module.css';
-import ModalFooter from '../components/Modal/ModalFooter';
 import { IPost } from '../lib/post-api';
 
 /**
@@ -51,9 +50,9 @@ export default function HomeContainer({ user, posts, onSubmitPost, onLikePost })
               }
             }}
           />
-          <ModalFooter>
+          <Modal.Footer>
             <AddCommentActions onCancel={() => setActiveModal(false)} onSubmit={postSubmit} />
-          </ModalFooter>
+          </Modal.Footer>
         </Modal>
       )}
 

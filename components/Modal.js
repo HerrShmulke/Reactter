@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
-import styles from '../../styles/Modal.module.css';
+import styles from '../styles/Modal.module.css';
 import FocusLock from 'react-focus-lock';
 
-export default function Modal({ children, renderActions: Actions, setActive }) {
+function Footer({ children }) {
+  return <div className={styles.actions}>{children}</div>;
+}
+
+const Modal = function ({ children, renderActions: Actions, setActive }) {
   /**
    * @type {import('react').MutableRefObject<HTMLDivElement>}
    */
@@ -45,4 +49,8 @@ export default function Modal({ children, renderActions: Actions, setActive }) {
       </div>
     </FocusLock>
   );
-}
+};
+
+Modal.Footer = Footer;
+
+export default Modal;
